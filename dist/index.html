@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="IndWM: an industrial world model for embodied robot intelligence in manufacturing systems."
+    />
+    <meta name="theme-color" content="#090b0e" />
+    <title>IndWM — Industrial World Model</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23090b0e'/%3E%3Cpath d='M13 43V21h8v22zm15 0V21h8l7 11V21h8v22h-8L36 32v11z' fill='%23f5c84c'/%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="IndWM home">
+        <span class="brand-mark" aria-hidden="true">IW</span>
+        <span class="brand-copy">
+          <strong>IndWM</strong>
+          <span>Industrial World Model</span>
+        </span>
+      </a>
+      <nav aria-label="Page sections">
+        <a href="#tour">Tour</a>
+        <a href="#factory">Factory</a>
+        <a href="#reasoning">Reasoning</a>
+        <a href="#resources">Data</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="hero-copy reveal">
+          <p class="eyebrow"><span>Industrial AI</span> / Embodied robotics</p>
+          <h1 id="hero-title">IndWM: An Industrial<br />World Model Framework</h1>
+          <p class="hero-subtitle">for Embodied Robotics Manufacturing</p>
+          <p class="hero-line">Perceive. Reason. Coordinate. Act.</p>
+          <ul class="hero-keywords" aria-label="Research keywords">
+            <li>Industrial robotics</li>
+            <li>World model</li>
+            <li>Smart manufacturing</li>
+            <li>Embodied intelligence</li>
+            <li>Spatial intelligence</li>
+          </ul>
+          <dl class="stats" aria-label="Project summary">
+            <div><dt>80 × 60 m</dt><dd>Factory</dd></div>
+            <div><dt>03</dt><dd>Tasks</dd></div>
+            <div><dt>01</dt><dd>World</dd></div>
+          </dl>
+        </div>
+
+        <div class="tour-wrap reveal" id="tour">
+          <div class="frame-corners" aria-hidden="true"></div>
+          <video
+            controls
+            playsinline
+            preload="metadata"
+            poster="./assets/tour-poster.webp"
+            aria-label="One-take smart factory tour"
+          >
+            <source src="./assets/factory-tour.mp4" type="video/mp4" />
+            Your browser does not support embedded video.
+          </video>
+          <div class="media-meta">
+            <span><i aria-hidden="true"></i> One-take factory tour</span>
+            <span>00:38</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section factory-section" id="factory" aria-labelledby="factory-title">
+        <div class="section-head reveal">
+          <p class="section-index">01 / SYSTEM</p>
+          <h2 id="factory-title">One factory.<br />Six connected zones.</h2>
+          <a href="./assets/overall-factory.pdf" target="_blank" rel="noreferrer">
+            Open diagram <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+        <div class="factory-visual reveal">
+          <figure class="factory-figure">
+            <img
+              src="./assets/factory-overview.webp"
+              width="2447"
+              height="1113"
+              loading="lazy"
+              alt="Overall factory plan showing storage, robot sorting, forklift loop, goods staging, robot operating area, and pre-sort conveyors"
+            />
+            <figcaption>
+              <span>Overall Factory</span>
+              <span>NVIDIA Isaac Sim · 80 m × 60 m</span>
+            </figcaption>
+          </figure>
+          <aside class="sim-note" aria-label="Factory simulation platform">
+            <span>Simulation environment</span>
+            <div>
+              <h3>NVIDIA Isaac Sim</h3>
+              <p>The 80 × 60 m factory and its task scenes were assembled in NVIDIA Isaac Sim—an OpenUSD-based robotics simulation framework with physically based environments, robot and sensor models, and synthetic-data generation. It provides the controllable geometry, physics, viewpoints, and robot states used for the factory observations on this page.</p>
+            </div>
+            <a href="https://developer.nvidia.com/isaac/sim" target="_blank" rel="noreferrer">Official Isaac Sim page <span aria-hidden="true">↗</span></a>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section reasoning-section" id="reasoning" aria-labelledby="reasoning-title">
+        <div class="reasoning-head reveal">
+          <div>
+            <p class="section-index">02 / REASONING</p>
+            <h2 id="reasoning-title">Human intent.<br />Model calls. Physical action.</h2>
+          </div>
+          <div class="task-tabs" role="tablist" aria-label="Reasoning tasks">
+            <button id="tab-1" role="tab" aria-selected="true" aria-controls="panel-1" data-task="1">
+              <span>01</span> Pick &amp; place
+            </button>
+            <button id="tab-2" role="tab" aria-selected="false" aria-controls="panel-2" data-task="2" tabindex="-1">
+              <span>02</span> Robot handover
+            </button>
+            <button id="tab-3" role="tab" aria-selected="false" aria-controls="panel-3" data-task="3" tabindex="-1">
+              <span>03</span> Cascade sorting
+            </button>
+          </div>
+        </div>
+
+        <div class="model-flow reveal" aria-label="Human, model, robot, and factory interaction loop">
+          <div class="model-flow-head">
+            <span>Model call + physical feedback loop</span>
+            <p>One instruction stays connected to the factory state from perception to execution.</p>
+          </div>
+          <div class="flow-grid">
+            <div class="flow-node">
+              <span>01 / Human</span>
+              <strong>Factory worker</strong>
+              <small>Natural-language task</small>
+            </div>
+            <div class="flow-node">
+              <span>02 / Observe</span>
+              <strong>Factory input</strong>
+              <small>RGB · robot state · scene</small>
+            </div>
+            <div class="flow-node flow-node-brand deepmind-node">
+              <span>03 / Gemini API</span>
+              <img class="gemini-logo" src="./assets/gemini-ai.svg" width="200" height="200" alt="Gemini" />
+              <strong>Gemini Robotics ER 2</strong>
+              <small>Ground · reason · assign</small>
+            </div>
+            <div class="flow-node">
+              <span>04 / Interface</span>
+              <strong>Executable work plan</strong>
+              <small>Task · pose · robot · constraint</small>
+            </div>
+            <div class="flow-node flow-node-brand nvidia-node">
+              <span>05 / World model</span>
+              <span class="nvidia-logo"><img src="./assets/nvidia.svg" width="200" height="200" alt="NVIDIA" /></span>
+              <strong>DreamZero</strong>
+              <small>Predict · plan · control</small>
+            </div>
+            <div class="flow-node">
+              <span>06 / Physical world</span>
+              <strong>Robot + factory</strong>
+              <small>Act · observe · report</small>
+            </div>
+          </div>
+          <div class="feedback-loop">
+            <span aria-hidden="true">↺</span>
+            <p><strong>Closed loop.</strong> New camera frames, robot states, success signals, and failures return to both model layers. A changed factory event can trigger a fresh VLM call and a new physically grounded plan.</p>
+          </div>
+        </div>
+
+        <div class="task-panels reveal">
+          <article id="panel-1" class="task-panel is-active" role="tabpanel" aria-labelledby="tab-1">
+            <div class="factory-input">
+              <figure class="task-image">
+                <img src="./assets/task-1.webp" width="1577" height="886" loading="lazy" alt="Factory camera input showing a humanoid robot between a package bin and conveyor" />
+                <figcaption><span>Factory visual input</span><span>RGB / Scene 01</span></figcaption>
+              </figure>
+              <div class="worker-prompt">
+                <div class="prompt-author"><span class="avatar worker-avatar">W</span><span><strong>Factory worker</strong><small>Task description</small></span></div>
+                <p>“Move to the blue bin, pick up the red package, turn around, walk to the conveyor belt, and place the package down.”</p>
+              </div>
+            </div>
+            <div class="conversation" aria-label="Pick and place embodied reasoning dialogue">
+              <div class="conversation-head"><span>Embodied reasoning trace</span><strong>01 / Mobile manipulation</strong></div>
+              <div class="turn gemini-turn">
+                <span class="stage-code gemini-code">VLM</span>
+                <div class="turn-body">
+                  <div class="turn-meta model-meta">
+                    <div class="model-lockup"><img class="gemini-logo" src="./assets/gemini-ai.svg" width="200" height="200" alt="Gemini" /><span><strong>Gemini Robotics ER 2</strong><small>Google DeepMind VLM · Gemini API</small></span></div>
+                    <span class="turn-role">Visual grounding + Tree of Thoughts</span>
+                  </div>
+                  <p>The VLM combines the worker’s instruction with the factory image. It identifies the humanoid, blue bin, red target package, and roller conveyor, establishes world frame <b>W</b>, explores alternative pickup routes and grasp poses, then selects the feasible task branch.</p>
+                  <div class="state-chips"><code>robot [0.1, 2.4, 0.0]</code><code>target [-0.9, 1.1, 0.45]</code><code>place [1.6, 1.0, 0.65]</code></div>
+                </div>
+              </div>
+              <div class="turn worldmodel-turn">
+                <span class="stage-code worldmodel-code">WM</span>
+                <div class="turn-body">
+                  <div class="turn-meta model-meta">
+                    <div class="model-lockup"><span class="nvidia-logo"><img src="./assets/nvidia.svg" width="200" height="200" alt="NVIDIA" /></span><span><strong>DreamZero</strong><small>NVIDIA · World Action Model</small></span></div>
+                    <span class="turn-role">Predictive rollout + embodied control</span>
+                  </div>
+                  <p>DreamZero receives the structured work plan rather than the raw sentence. It predicts action-conditioned future states for this humanoid, checks the bin rim, reachability, collision risk, and grasp continuity, then converts the selected subgoals into low-level predictive actions.</p>
+                  <ol class="reasoning-steps">
+                    <li><b>01</b><span>Walk to bin standby</span><code>WalkTo</code></li>
+                    <li><b>02</b><span>Pre-grasp 0.65 → grasp 0.45 → lift 0.70 m</span><code>ArmGrasp</code></li>
+                    <li><b>03</b><span>Carry to conveyor standby [1.1, 1.0, 0.0]</span><code>WalkTo</code></li>
+                    <li><b>04</b><span>Lower, release at z 0.68, retract arms</span><code>ArmPlace</code></li>
+                  </ol>
+                </div>
+              </div>
+              <div class="turn robot-turn">
+                <span class="avatar robot-avatar">R</span>
+                <div class="turn-body">
+                  <div class="turn-meta"><strong>Robot policy</strong><span>Execution response</span></div>
+                  <p>The robot executes, then reports its pose, gripper state, object state, and a new factory frame. A failed grasp or displaced package re-enters the loop for VLM replanning and another world-model rollout.</p>
+                  <div class="execution-line"><span>Closed-loop execution</span><code>navigate → grasp → observe → carry → place → verify</code></div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article id="panel-2" class="task-panel" role="tabpanel" aria-labelledby="tab-2" hidden>
+            <div class="factory-input">
+              <figure class="task-image">
+                <img src="./assets/task-2.webp" width="1571" height="883" loading="lazy" alt="Factory camera input showing two humanoid robots preparing a box handover" />
+                <figcaption><span>Factory visual input</span><span>RGB / Scene 02</span></figcaption>
+              </figure>
+              <div class="worker-prompt">
+                <div class="prompt-author"><span class="avatar worker-avatar">W</span><span><strong>Factory worker</strong><small>Task description</small></span></div>
+                <p>“Left Robot, pick up the cardboard box and carry it to the handover area. Right Robot, turn around and receive it. Transfer the box safely between both robots.”</p>
+              </div>
+            </div>
+            <div class="conversation" aria-label="Robot handover embodied reasoning dialogue">
+              <div class="conversation-head"><span>Embodied reasoning trace</span><strong>02 / Multi-robot coordination</strong></div>
+              <div class="turn gemini-turn">
+                <span class="stage-code gemini-code">VLM</span>
+                <div class="turn-body">
+                  <div class="turn-meta model-meta">
+                    <div class="model-lockup"><img class="gemini-logo" src="./assets/gemini-ai.svg" width="200" height="200" alt="Gemini" /><span><strong>Gemini Robotics ER 2</strong><small>Google DeepMind VLM · Gemini API</small></span></div>
+                    <span class="turn-role">Grounding + role assignment</span>
+                  </div>
+                  <p>The VLM reads the worker’s two-robot instruction and the factory image together. It grounds Robot A, Robot B, the cardboard box, both tables, and the shared handover region, then compares alternative role assignments and chooses one reachable transfer pose.</p>
+                  <div class="state-chips"><code>box [-1.2, 1.8, 0.85]</code><code>A standby [-0.2, 1.1, 0.0]</code><code>handover [0.0, 1.1, 0.95]</code></div>
+                </div>
+              </div>
+              <div class="turn worldmodel-turn">
+                <span class="stage-code worldmodel-code">WM</span>
+                <div class="turn-body">
+                  <div class="turn-meta model-meta">
+                    <div class="model-lockup"><span class="nvidia-logo"><img src="./assets/nvidia.svg" width="200" height="200" alt="NVIDIA" /></span><span><strong>DreamZero</strong><small>NVIDIA · World Action Model</small></span></div>
+                    <span class="turn-role">Multi-robot predictive execution</span>
+                  </div>
+                  <p>DreamZero rolls out both bodies in parallel, evaluates approach clearance, arm reach, payload stability, and timing, and preserves a synchronization barrier: Robot A cannot release until Robot B’s predicted and observed grip states agree.</p>
+                  <ol class="reasoning-steps">
+                    <li><b>01</b><span>Robot A walks to Table 1, grasps and lifts the box</span><code>A / pickup</code></li>
+                    <li><b>02</b><span>Robot B turns and moves to [0.2, 1.1, 0.0]</span><code>B / align</code></li>
+                    <li><b>03</b><span>Both arms converge at the shared handover pose</span><code>A + B</code></li>
+                    <li><b>04</b><span>B closes gripper; A releases only after confirmation</span><code>sync barrier</code></li>
+                  </ol>
+                </div>
+              </div>
+              <div class="turn robot-turn">
+                <span class="avatar robot-avatar">R</span>
+                <div class="turn-body">
+                  <div class="turn-meta"><strong>Robot team</strong><span>Execution response</span></div>
+                  <p>Both robots execute their assigned branches and stream pose, force, and gripper feedback. If alignment drifts, the world model pauses the release and the VLM regenerates the coordination branch from the updated factory state.</p>
+                  <div class="execution-line"><span>Feedback synchronized</span><code>B: close → sense → confirm → A: open → verify</code></div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article id="panel-3" class="task-panel" role="tabpanel" aria-labelledby="tab-3" hidden>
+            <div class="factory-input">
+              <figure class="task-image">
+                <img src="./assets/task-3.webp" width="1577" height="885" loading="lazy" alt="Factory camera input showing two robot arms sorting parcels across connected conveyors" />
+                <figcaption><span>Factory visual input</span><span>RGB / Scene 03</span></figcaption>
+              </figure>
+              <div class="worker-prompt">
+                <div class="prompt-author"><span class="avatar worker-avatar">W</span><span><strong>Factory worker</strong><small>Task description</small></span></div>
+                <p>“Sort every target item on the main conveyor. Arm 1 should pick first; if it misses an item or is busy, Arm 2 must catch it. Place sorted items on the side conveyors.”</p>
+              </div>
+            </div>
+            <div class="conversation" aria-label="Cascade sorting embodied reasoning dialogue">
+              <div class="conversation-head"><span>Embodied reasoning trace</span><strong>03 / Fail-safe sorting</strong></div>
+              <div class="turn gemini-turn">
+                <span class="stage-code gemini-code">VLM</span>
+                <div class="turn-body">
+                  <div class="turn-meta model-meta">
+                    <div class="model-lockup"><img class="gemini-logo" src="./assets/gemini-ai.svg" width="200" height="200" alt="Gemini" /><span><strong>Gemini Robotics ER 2</strong><small>Google DeepMind VLM · Gemini API</small></span></div>
+                    <span class="turn-role">Scene understanding + task allocation</span>
+                  </div>
+                  <p>The VLM grounds two fixed arms, one continuous feed line, incoming parcels, and both side-conveyor destinations. It interprets “Arm 1 first, Arm 2 if missed” as a shared target track with primary and fallback ownership.</p>
+                  <div class="state-chips"><code>arm 1 [0.0, 0.0, 0.4]</code><code>arm 2 [0.0, 1.2, 0.4]</code><code>flow +Y / line X = 0.6</code></div>
+                </div>
+              </div>
+              <div class="turn worldmodel-turn">
+                <span class="stage-code worldmodel-code">WM</span>
+                <div class="turn-body">
+                  <div class="turn-meta model-meta">
+                    <div class="model-lockup"><span class="nvidia-logo"><img src="./assets/nvidia.svg" width="200" height="200" alt="NVIDIA" /></span><span><strong>DreamZero</strong><small>NVIDIA · World Action Model</small></span></div>
+                    <span class="turn-role">Future-state prediction + fallback control</span>
+                  </div>
+                  <p>DreamZero predicts each parcel’s motion and both arms’ reachable futures. Arm 1 receives the first intercept; if grip confirmation is absent before the object leaves its workspace, the predicted target pose and priority transfer to Arm 2.</p>
+                  <ol class="reasoning-steps">
+                    <li><b>01</b><span>Scan and estimate the target trajectory</span><code>monitor</code></li>
+                    <li><b>02</b><span>Arm 1 intercepts at [0.6, 0.0, 0.15]</span><code>primary</code></li>
+                    <li><b>03</b><span>On miss, Arm 2 intercepts at [0.6, 1.2, 0.15]</span><code>fallback</code></li>
+                    <li><b>04</b><span>Place at each arm’s dedicated side-conveyor zone</span><code>sort</code></li>
+                  </ol>
+                </div>
+              </div>
+              <div class="turn robot-turn">
+                <span class="avatar robot-avatar">R</span>
+                <div class="turn-body">
+                  <div class="turn-meta"><strong>Robot cells</strong><span>Execution response</span></div>
+                  <p>The cells execute while conveyor observations continuously update the shared target track. A miss, blockage, or workload change is returned as a factory event, causing the VLM to revise allocation and DreamZero to roll out the new action branch.</p>
+                  <div class="execution-line"><span>Adaptive loop active</span><code>observe → predict → primary/fallback → verify → update</code></div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section resources-section" id="resources" aria-labelledby="resources-title">
+        <div class="resources-head reveal">
+          <p class="section-index">03 / DATA &amp; ACKNOWLEDGEMENTS</p>
+          <h2 id="resources-title">Built with shared<br />physical AI resources.</h2>
+          <p>We thank NVIDIA for Isaac Sim and the four Physical AI datasets that support factory construction, spatial understanding, predictive world modeling, asset composition, and multi-camera tracking.</p>
+        </div>
+
+        <div class="dataset-grid reveal">
+          <article class="dataset-card">
+            <figure>
+              <img src="./assets/dataset-spatial-intelligence.jpg" width="1600" height="720" loading="lazy" alt="Representative RGB and depth samples from the Physical AI Spatial Intelligence Warehouse dataset" />
+              <figcaption><span>RGB-D · masks · spatial Q&amp;A</span><a href="https://huggingface.co/datasets/nvidia/PhysicalAI-Spatial-Intelligence-Warehouse" target="_blank" rel="noreferrer">Official dataset ↗</a></figcaption>
+            </figure>
+            <div class="dataset-copy">
+              <span>01 / Spatial intelligence</span>
+              <h3>PhysicalAI Spatial Intelligence Warehouse</h3>
+              <p>Synthetic warehouse RGB-D observations with object masks and questions for grounding, left–right relations, counting, and metric distance reasoning.</p>
+            </div>
+          </article>
+
+          <article class="dataset-card">
+            <figure>
+              <img src="./assets/dataset-worldmodel-warehouse.jpg" width="1600" height="720" loading="lazy" alt="Representative multi-view RGB and depth frames from the PhysicalAI SDG-Warehouse dataset" />
+              <figcaption><span>Multi-view video · dense labels</span><a href="https://huggingface.co/datasets/nvidia/PhysicalAI-WorldModel-Synthetic-Warehouse-Operations-Scenes" target="_blank" rel="noreferrer">Official dataset ↗</a></figcaption>
+            </figure>
+            <div class="dataset-copy">
+              <span>02 / World modeling</span>
+              <h3>PhysicalAI SDG-Warehouse</h3>
+              <p>Isaac Sim warehouse video with synchronized viewpoints and RGB, depth, segmentation, edges, bounding boxes, and camera metadata for physical-AI world modeling.</p>
+            </div>
+          </article>
+
+          <article class="dataset-card">
+            <figure>
+              <img src="./assets/dataset-simready-assets.jpg" width="1600" height="720" loading="lazy" alt="Representative OpenUSD warehouse assets from the PhysicalAI SimReady Warehouse dataset" />
+              <figcaption><span>OpenUSD · simulation-ready assets</span><a href="https://huggingface.co/datasets/nvidia/PhysicalAI-SimReady-Warehouse-01" target="_blank" rel="noreferrer">Official dataset ↗</a></figcaption>
+            </figure>
+            <div class="dataset-copy">
+              <span>03 / Factory assets</span>
+              <h3>PhysicalAI SimReady Warehouse 01</h3>
+              <p>A catalog of 753 Isaac Sim-compatible OpenUSD warehouse assets, including racks, pallets, containers, forklifts, and physically graspable objects.</p>
+            </div>
+          </article>
+
+          <article class="dataset-card">
+            <figure>
+              <img src="./assets/dataset-smartspaces.jpg" width="1600" height="720" loading="lazy" alt="Representative multi-camera warehouse tracking frames from the Physical AI Smart Spaces dataset" />
+              <figcaption><span>Multi-camera · 2D/3D tracking</span><a href="https://huggingface.co/datasets/nvidia/PhysicalAI-SmartSpaces" target="_blank" rel="noreferrer">Official dataset ↗</a></figcaption>
+            </figure>
+            <div class="dataset-copy">
+              <span>04 / Smart spaces</span>
+              <h3>PhysicalAI Smart Spaces</h3>
+              <p>Time-synchronized indoor scenes with calibration and tracking annotations for people, forklifts, pallet trucks, AMRs, and humanoid robots across multiple cameras.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="official-references reveal">
+          <div>
+            <p class="section-index">Official references</p>
+            <h3>Platforms &amp; datasets</h3>
+          </div>
+          <ol>
+            <li><span>[1]</span><p>NVIDIA Corporation. <a href="https://developer.nvidia.com/isaac/sim" target="_blank" rel="noreferrer">NVIDIA Isaac Sim: Robotics Simulation and Synthetic Data Generation</a>.</p></li>
+            <li><span>[2]</span><p>NVIDIA. <a href="https://huggingface.co/datasets/nvidia/PhysicalAI-Spatial-Intelligence-Warehouse" target="_blank" rel="noreferrer">Physical AI Spatial Intelligence Warehouse</a> [Dataset], 2025.</p></li>
+            <li><span>[3]</span><p>Dadhich, N. <a href="https://huggingface.co/datasets/nvidia/PhysicalAI-WorldModel-Synthetic-Warehouse-Operations-Scenes" target="_blank" rel="noreferrer">PhysicalAI SDG-Warehouse: A Synthetic Multi-View Video Dataset of Industrial-Safety Events</a>. NVIDIA, 2026; accompanied by <em>Cosmos 3: Omnimodal World Models for Physical AI</em>.</p></li>
+            <li><span>[4]</span><p>NVIDIA Corporation. <a href="https://huggingface.co/datasets/nvidia/PhysicalAI-SimReady-Warehouse-01" target="_blank" rel="noreferrer">NVIDIA Physical AI SimReady Warehouse OpenUSD Dataset</a>, version 1.1.0, 2025.</p></li>
+            <li><span>[5]</span><p>NVIDIA. <a href="https://huggingface.co/datasets/nvidia/PhysicalAI-SmartSpaces" target="_blank" rel="noreferrer">Physical AI Smart Spaces Dataset</a>. See Tang et al., <em>The 9th AI City Challenge</em>, ICCV Workshops, 2025; Wang et al., <em>The 8th AI City Challenge</em>, CVPR Workshops, 2024.</p></li>
+          </ol>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>IndWM</span>
+      <span>Industrial World Model · 2026</span>
+    </footer>
+  </body>
+</html>
